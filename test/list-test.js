@@ -21,7 +21,6 @@ describe('Listing plugins', () => {
   });
 
   it('should returns installed packages with scope', () => {
-    console.log(installed);
     assert.include(installed, '@scope/example');
     assert.include(installed, '@scope/normal');
   });
