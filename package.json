@@ -18,7 +18,8 @@
     "url": "https://github.com/pksunkara/electron-plugin-manager/issues"
   },
   "scripts": {
-    "test": "nyc --reporter=lcovonly --reporter=text-summary mocha",
+    "test": "mocha",
+    "cover": "nyc --reporter=lcovonly --reporter=text-summary mocha",
     "lint": "eslint ."
   },
   "dependencies": {
