@@ -1,0 +1,23 @@
+{
+  "name": "electron-plugin-manager",
+  "version": "0.1.0",
+  "description": "Plugin Manager based on NPM for Electron apps",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pksunkara/electron-plugin-manager.git"
+  },
+  "keywords": [
+    "electron",
+    "plugin",
+    "plugins"
+  ],
+  "author": "Pavan Kumar Sunkara <pavan.sss1991@gmail.com> (pksunkara.github.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pksunkara/electron-plugin-manager/issues"
+  },
+  "dependencies": {
+    "pacote": "^9.1.0"
+  }
+}
