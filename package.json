@@ -19,11 +19,12 @@
   },
   "scripts": {
     "test": "mocha",
-    "cover": "nyc --reporter=lcovonly --reporter=text-summary mocha",
+    "cover": "nyc --reporter=lcovonly --reporter=text-summary npm test",
     "lint": "eslint ."
   },
   "dependencies": {
-    "pacote": "^9.1.0"
+    "pacote": "^9.1.0",
+    "rimraf": "^2.6.2"
   },
   "devDependencies": {
     "chai": "^4.1.2",
@@ -31,6 +32,7 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "mocha": "^5.2.0",
+    "nock": "^10.0.0",
     "nyc": "^13.0.1"
   }
 }
