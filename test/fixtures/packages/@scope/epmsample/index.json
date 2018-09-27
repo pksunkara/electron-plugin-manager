@@ -1,0 +1,21 @@
+{
+  "_id": "@scope/epmsample",
+  "name": "@scope/epmsample",
+  "dist-tags": {
+    "latest": "0.1.0"
+  },
+  "versions": {
+    "0.1.0": {
+      "name": "@scope/epmsample",
+      "version": "0.1.0",
+      "main": "index.js",
+      "dependencies": {},
+      "_id": "@scope/epmsample@0.1.0",
+      "dist": {
+        "tarball": "https://registry.npmjs.org/@scope/epmsample/-/epmsample-0.1.0.tgz",
+        "shasum": "4f3b910c647922d6e33f8ea213e41502b5e2fe00"
+      },
+      "_hasShrinkwrap": false
+    }
+  }
+}

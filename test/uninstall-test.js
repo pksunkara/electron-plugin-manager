@@ -44,5 +44,9 @@ describe('Uninstalling plugin', () => {
     });
   });
 
-  // with peer dependency
+  // TODO: with peer dependency
+
+  after((done) => {
+    rimraf(dir, done);
+  });
 });

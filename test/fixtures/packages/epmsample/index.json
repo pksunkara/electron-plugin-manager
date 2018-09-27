@@ -1,0 +1,39 @@
+{
+  "_id": "epmsample",
+  "name": "epmsample",
+  "dist-tags": {
+    "latest": "0.1.2"
+  },
+  "versions": {
+    "0.1.0": {
+      "name": "epmsample",
+      "version": "0.1.0",
+      "_id": "epmsample@0.1.0",
+      "dist": {
+        "tarball": "https://registry.npmjs.org/epmsample/-/epmsample-0.1.0.tgz"
+      },
+      "_hasShrinkwrap": false
+    },
+    "0.1.1": {
+      "name": "epmsample",
+      "version": "0.1.1",
+      "_id": "epmsample@0.1.1",
+      "dist": {
+        "tarball": "https://registry.npmjs.org/epmsample/-/epmsample-0.1.1.tgz"
+      },
+      "_hasShrinkwrap": false
+    },
+    "0.1.2": {
+      "name": "epmsample",
+      "version": "0.1.2",
+      "_id": "epmsample@0.1.2",
+      "dependencies": {
+        "epmdep1": "0.1.0"
+      },
+      "dist": {
+        "tarball": "https://registry.npmjs.org/epmsample/-/epmsample-0.1.2.tgz"
+      },
+      "_hasShrinkwrap": false
+    }
+  }
+}
