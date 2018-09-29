@@ -75,45 +75,45 @@ describe('Installing plugin', () => {
     });
   });
 
-  // describe('with dependency', () => {
-  //   const pluginDir = path.join(dir, 'plugins', 'epmsample');
-  //   const server = nock('https://registry.npmjs.org', { allowUnmocked: true })
-  //     .get('/epmdep1')
-  //     .reply(200, JSON.stringify(require('./fixtures/packages/epmdep1')))
-  //     .get('/epmsample/-/epmsample-0.1.2.tgz')
-  //     .reply(200, fs.readFileSync(path.join(pkg, 'epmsample', '0.1.2.tgz')), octet)
-  //     .get('/epmdep1/-/epmdep1-0.1.0.tgz')
-  //     .reply(200, fs.readFileSync(path.join(pkg, 'epmdep1', '0.1.0.tgz')), octet);
-  //
-  //   before((done) => {
-  //     rimraf(dir, () => {
-  //       install(dir, 'epmsample', '0.1.2', done);
-  //     });
-  //   });
-  //
-  //   it('should call server', () => {
-  //     assert.isTrue(server.isDone());
-  //   });
-  //
-  //   it('should install plugin', () => {
-  //     assert.isTrue(fs.existsSync(pluginDir));
-  //   });
-  //
-  //   it('should work when required', () => {
-  //     assert.deepEqual(load(dir, 'epmsample'), {
-  //       name: 'epmsample@0.1.2',
-  //       dependencies: [
-  //         {
-  //           name: 'epmdep1@0.1.0',
-  //         },
-  //       ],
-  //     });
-  //   });
-  //
-  //   after(() => {
-  //     unload(dir, 'epmsample');
-  //   });
-  // });
+  describe('with dependency', () => {
+    const pluginDir = path.join(dir, 'plugins', 'epmsample');
+    const server = nock('https://registry.npmjs.org', { allowUnmocked: true })
+      .get('/epmdep1')
+      .reply(200, JSON.stringify(require('./fixtures/packages/epmdep1')))
+      .get('/epmsample/-/epmsample-0.1.2.tgz')
+      .reply(200, fs.readFileSync(path.join(pkg, 'epmsample', '0.1.2.tgz')), octet)
+      .get('/epmdep1/-/epmdep1-0.1.0.tgz')
+      .reply(200, fs.readFileSync(path.join(pkg, 'epmdep1', '0.1.0.tgz')), octet);
+
+    before((done) => {
+      rimraf(dir, () => {
+        install(dir, 'epmsample', '0.1.2', done);
+      });
+    });
+
+    it('should call server', () => {
+      assert.isTrue(server.isDone());
+    });
+
+    it('should install plugin', () => {
+      assert.isTrue(fs.existsSync(pluginDir));
+    });
+
+    it('should work when required', () => {
+      assert.deepEqual(load(dir, 'epmsample'), {
+        name: 'epmsample@0.1.2',
+        dependencies: [
+          {
+            name: 'epmdep1@0.1.0',
+          },
+        ],
+      });
+    });
+
+    after(() => {
+      unload(dir, 'epmsample');
+    });
+  });
 
   describe('with scope', () => {
     const pluginDir = path.join(dir, 'plugins', '@scope', 'epmsample');

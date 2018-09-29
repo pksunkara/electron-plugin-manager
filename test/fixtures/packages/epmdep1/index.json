@@ -10,8 +10,10 @@
       "version": "0.1.0",
       "_id": "epmdep1@0.1.0",
       "dist": {
-        "tarball": "https://registry.npmjs.org/epmdep1/-/epmdep1-0.1.0.tgz"
+        "tarball": "https://registry.npmjs.org/epmdep1/-/epmdep1-0.1.0.tgz",
+        "shasum": "c734a912347c2eaae30ada40b019654214bf0114"
       },
+      "directories": {},
       "_hasShrinkwrap": false
     }
   }

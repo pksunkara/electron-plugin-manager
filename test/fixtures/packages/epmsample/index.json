@@ -10,8 +10,10 @@
       "version": "0.1.0",
       "_id": "epmsample@0.1.0",
       "dist": {
-        "tarball": "https://registry.npmjs.org/epmsample/-/epmsample-0.1.0.tgz"
+        "tarball": "https://registry.npmjs.org/epmsample/-/epmsample-0.1.0.tgz",
+        "shasum": "5b8d9dfe0bd4227bfd3d59ed2252728527386a51"
       },
+      "directories": {},
       "_hasShrinkwrap": false
     },
     "0.1.1": {
@@ -19,8 +21,10 @@
       "version": "0.1.1",
       "_id": "epmsample@0.1.1",
       "dist": {
-        "tarball": "https://registry.npmjs.org/epmsample/-/epmsample-0.1.1.tgz"
+        "tarball": "https://registry.npmjs.org/epmsample/-/epmsample-0.1.1.tgz",
+        "shasum": "86ece4c65dd2089ed5fda76baaa1ad8b913ad2d6"
       },
+      "directories": {},
       "_hasShrinkwrap": false
     },
     "0.1.2": {
@@ -31,8 +35,10 @@
         "epmdep1": "0.1.0"
       },
       "dist": {
-        "tarball": "https://registry.npmjs.org/epmsample/-/epmsample-0.1.2.tgz"
+        "tarball": "https://registry.npmjs.org/epmsample/-/epmsample-0.1.2.tgz",
+        "shasum": "818276929451d30f38774ba2f25f04262d360553"
       },
+      "directories": {},
       "_hasShrinkwrap": false
     }
   }

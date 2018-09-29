@@ -15,6 +15,7 @@
         "tarball": "https://registry.npmjs.org/@scope/epmsample/-/epmsample-0.1.0.tgz",
         "shasum": "4f3b910c647922d6e33f8ea213e41502b5e2fe00"
       },
+      "directories": {},
       "_hasShrinkwrap": false
     }
   }
