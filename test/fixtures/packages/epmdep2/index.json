@@ -1,0 +1,20 @@
+{
+  "_id": "epmdep2",
+  "name": "epmdep2",
+  "dist-tags": {
+    "latest": "0.1.0"
+  },
+  "versions": {
+    "0.1.0": {
+      "name": "epmdep2",
+      "version": "0.1.0",
+      "_id": "epmdep2@0.1.0",
+      "dist": {
+        "tarball": "https://registry.npmjs.org/epmdep2/-/epmdep2-0.1.0.tgz",
+        "shasum": "eb1a12b15b00fefc3441ecf1eef01581a1f6a509"
+      },
+      "directories": {},
+      "_hasShrinkwrap": false
+    }
+  }
+}

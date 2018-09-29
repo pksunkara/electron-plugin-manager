@@ -110,6 +110,75 @@ describe('Installing plugin', () => {
       });
     });
 
+    describe('and node_modules folder', () => {
+      const nm = path.join(pluginDir, 'node_modules');
+
+      it('should exist', () => {
+        assert.isTrue(fs.existsSync(nm));
+      });
+
+      it('should have one dependency in it', () => {
+        assert.lengthOf(fs.readdirSync(nm), 1);
+      });
+    });
+
+    after(() => {
+      unload(dir, 'epmsample');
+    });
+  });
+
+  describe('with multiple dependencies', () => {
+    const pluginDir = path.join(dir, 'plugins', 'epmsample');
+    const server = nock('https://registry.npmjs.org', { allowUnmocked: true })
+      .get('/epmdep2')
+      .reply(200, JSON.stringify(require('./fixtures/packages/epmdep2')))
+      .get('/epmsample/-/epmsample-0.1.3.tgz')
+      .reply(200, fs.readFileSync(path.join(pkg, 'epmsample', '0.1.3.tgz')), octet)
+      .get('/epmdep1/-/epmdep1-0.1.0.tgz')
+      .reply(200, fs.readFileSync(path.join(pkg, 'epmdep1', '0.1.0.tgz')), octet)
+      .get('/epmdep2/-/epmdep2-0.1.0.tgz')
+      .reply(200, fs.readFileSync(path.join(pkg, 'epmdep2', '0.1.0.tgz')), octet);
+
+    before((done) => {
+      rimraf(dir, () => {
+        install(dir, 'epmsample', '0.1.3', done);
+      });
+    });
+
+    it('should call server', () => {
+      assert.isTrue(server.isDone());
+    });
+
+    it('should install plugin', () => {
+      assert.isTrue(fs.existsSync(pluginDir));
+    });
+
+    it('should work when required', () => {
+      assert.deepEqual(load(dir, 'epmsample'), {
+        name: 'epmsample@0.1.3',
+        dependencies: [
+          {
+            name: 'epmdep1@0.1.0',
+          },
+          {
+            name: 'epmdep2@0.1.0',
+          },
+        ],
+      });
+    });
+
+    describe('and node_modules folder', () => {
+      const nm = path.join(pluginDir, 'node_modules');
+
+      it('should exist', () => {
+        assert.isTrue(fs.existsSync(nm));
+      });
+
+      it('should have one dependency in it', () => {
+        assert.lengthOf(fs.readdirSync(nm), 2);
+      });
+    });
+
     after(() => {
       unload(dir, 'epmsample');
     });
