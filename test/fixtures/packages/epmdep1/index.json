@@ -2,7 +2,7 @@
   "_id": "epmdep1",
   "name": "epmdep1",
   "dist-tags": {
-    "latest": "0.1.0"
+    "latest": "0.1.1"
   },
   "versions": {
     "0.1.0": {
@@ -12,6 +12,20 @@
       "dist": {
         "tarball": "https://registry.npmjs.org/epmdep1/-/epmdep1-0.1.0.tgz",
         "shasum": "c734a912347c2eaae30ada40b019654214bf0114"
+      },
+      "directories": {},
+      "_hasShrinkwrap": false
+    },
+    "0.1.1": {
+      "name": "epmdep1",
+      "version": "0.1.1",
+      "_id": "epmdep1@0.1.1",
+      "dependencies": {
+        "epmdep2": "0.1.0"
+      },
+      "dist": {
+        "tarball": "https://registry.npmjs.org/epmdep1/-/epmdep1-0.1.1.tgz",
+        "shasum": "56c3b5a56f39e9875747418cbb89590c6d6f6ea3"
       },
       "directories": {},
       "_hasShrinkwrap": false

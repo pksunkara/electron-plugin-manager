@@ -118,7 +118,10 @@ describe('Installing plugin', () => {
       });
 
       it('should have one dependency in it', () => {
-        assert.lengthOf(fs.readdirSync(nm), 1);
+        const deps = fs.readdirSync(nm);
+
+        assert.lengthOf(deps, 1);
+        assert.include(deps, 'epmdep1');
       });
     });
 
@@ -127,7 +130,9 @@ describe('Installing plugin', () => {
     });
   });
 
-  describe('with multiple dependencies', () => {
+  // TODO: with a scoped dependency
+
+  describe('with multiple top level dependencies', () => {
     const pluginDir = path.join(dir, 'plugins', 'epmsample');
     const server = nock('https://registry.npmjs.org', { allowUnmocked: true })
       .get('/epmdep2')
@@ -174,8 +179,12 @@ describe('Installing plugin', () => {
         assert.isTrue(fs.existsSync(nm));
       });
 
-      it('should have one dependency in it', () => {
-        assert.lengthOf(fs.readdirSync(nm), 2);
+      it('should have two dependencies in it', () => {
+        const deps = fs.readdirSync(nm);
+
+        assert.lengthOf(deps, 2);
+        assert.include(deps, 'epmdep1');
+        assert.include(deps, 'epmdep2');
       });
     });
 
@@ -212,6 +221,81 @@ describe('Installing plugin', () => {
 
     after(() => {
       unload(dir, '@scope/epmsample');
+    });
+  });
+
+  describe('with dependency in top level dependency', () => {
+    const pluginDir = path.join(dir, 'plugins', 'epmsample');
+    const server = nock('https://registry.npmjs.org', { allowUnmocked: true })
+      .get('/epmsample/-/epmsample-0.1.4.tgz')
+      .reply(200, fs.readFileSync(path.join(pkg, 'epmsample', '0.1.4.tgz')), octet)
+      .get('/epmdep1/-/epmdep1-0.1.1.tgz')
+      .reply(200, fs.readFileSync(path.join(pkg, 'epmdep1', '0.1.1.tgz')), octet)
+      .get('/epmdep2/-/epmdep2-0.1.0.tgz')
+      .reply(200, fs.readFileSync(path.join(pkg, 'epmdep2', '0.1.0.tgz')), octet);
+
+    before((done) => {
+      rimraf(dir, () => {
+        install(dir, 'epmsample', '0.1.4', done);
+      });
+    });
+
+    it('should call server', () => {
+      assert.isTrue(server.isDone());
+    });
+
+    it('should install plugin', () => {
+      assert.isTrue(fs.existsSync(pluginDir));
+    });
+
+    it('should work when required', () => {
+      assert.deepEqual(load(dir, 'epmsample'), {
+        name: 'epmsample@0.1.4',
+        dependencies: [
+          {
+            name: 'epmdep1@0.1.1',
+            dependencies: [
+              {
+                name: 'epmdep2@0.1.0',
+              },
+            ],
+          },
+        ],
+      });
+    });
+
+    describe('and node_modules folder', () => {
+      const nm1 = path.join(pluginDir, 'node_modules');
+
+      it('should exist', () => {
+        assert.isTrue(fs.existsSync(nm1));
+      });
+
+      it('should have one dependency in it', () => {
+        const deps = fs.readdirSync(nm1);
+
+        assert.lengthOf(deps, 1);
+        assert.include(deps, 'epmdep1');
+      });
+
+      describe('and dependency\'s node_modules folder', () => {
+        const nm2 = path.join(pluginDir, 'node_modules', 'epmdep1', 'node_modules');
+
+        it('should exist', () => {
+          assert.isTrue(fs.existsSync(nm2));
+        });
+
+        it('should have one dependency in it', () => {
+          const deps = fs.readdirSync(nm2);
+
+          assert.lengthOf(deps, 1);
+          assert.include(deps, 'epmdep2');
+        });
+      });
+    });
+
+    after(() => {
+      unload(dir, 'epmsample');
     });
   });
 
