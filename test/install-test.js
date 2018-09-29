@@ -130,8 +130,6 @@ describe('Installing plugin', () => {
     });
   });
 
-  // TODO: with a scoped dependency
-
   describe('with multiple top level dependencies', () => {
     const pluginDir = path.join(dir, 'plugins', 'epmsample');
     const server = nock('https://registry.npmjs.org', { allowUnmocked: true })
@@ -291,6 +289,66 @@ describe('Installing plugin', () => {
           assert.lengthOf(deps, 1);
           assert.include(deps, 'epmdep2');
         });
+      });
+    });
+
+    after(() => {
+      unload(dir, 'epmsample');
+    });
+  });
+
+  describe('with scoped dependency', () => {
+    const pluginDir = path.join(dir, 'plugins', 'epmsample');
+    const server = nock('https://registry.npmjs.org', { allowUnmocked: true })
+      .get('/epmsample/-/epmsample-0.1.5.tgz')
+      .reply(200, fs.readFileSync(path.join(pkg, 'epmsample', '0.1.5.tgz')), octet)
+      .get('/@scope/epmsample/-/epmsample-0.1.0.tgz')
+      .reply(200, fs.readFileSync(path.join(pkg, '@scope', 'epmsample', '0.1.0.tgz')), octet);
+
+    before((done) => {
+      rimraf(dir, () => {
+        install(dir, 'epmsample', '0.1.5', done);
+      });
+    });
+
+    it('should call server', () => {
+      assert.isTrue(server.isDone());
+    });
+
+    it('should install plugin', () => {
+      assert.isTrue(fs.existsSync(pluginDir));
+    });
+
+    it('should work when required', () => {
+      assert.deepEqual(load(dir, 'epmsample'), {
+        name: 'epmsample@0.1.5',
+        dependencies: [
+          {
+            name: '@scope/epmsample@0.1.0',
+          },
+        ],
+      });
+    });
+
+    describe('and node_modules folder', () => {
+      const nm = path.join(pluginDir, 'node_modules');
+
+      it('should exist', () => {
+        assert.isTrue(fs.existsSync(nm));
+      });
+
+      it('should have one scope in it', () => {
+        const deps = fs.readdirSync(nm);
+
+        assert.lengthOf(deps, 1);
+        assert.include(deps, '@scope');
+      });
+
+      it('and the scope should have one dependency', () => {
+        const deps = fs.readdirSync(path.join(nm, '@scope'));
+
+        assert.lengthOf(deps, 1);
+        assert.include(deps, 'epmsample');
       });
     });
 

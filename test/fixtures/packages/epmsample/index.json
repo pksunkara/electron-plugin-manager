@@ -69,6 +69,20 @@
       },
       "directories": {},
       "_hasShrinkwrap": false
+    },
+    "0.1.5": {
+      "name": "epmsample",
+      "version": "0.1.5",
+      "_id": "epmsample@0.1.5",
+      "dependencies": {
+        "@scope/epmsample": "0.1.0"
+      },
+      "dist": {
+        "tarball": "https://registry.npmjs.org/epmsample/-/epmsample-0.1.5.tgz",
+        "shasum": "0382b8babbdd88e8ff2802ee722edfb15365bfb2"
+      },
+      "directories": {},
+      "_hasShrinkwrap": false
     }
   }
 }
