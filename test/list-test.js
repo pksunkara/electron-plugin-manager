@@ -28,4 +28,8 @@ describe('Listing plugins', () => {
   it('should not have files from scope level', () => {
     assert.notInclude(installed, '@scope/sample');
   });
+
+  it('in a non existent directory should return empty', () => {
+    assert.lengthOf(list(path.join(cwd, 'fixtures', 'install')), 0);
+  });
 });
