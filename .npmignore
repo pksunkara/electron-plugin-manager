@@ -1,0 +1,6 @@
+.eslintrc
+.travis.yml
+appveyor.yml
+test
+coverage
+.nyc_output
