@@ -1,6 +1,6 @@
 {
   "name": "electron-plugin-manager",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Plugin Manager based on NPM for Electron apps",
   "main": "index.js",
   "repository": {
