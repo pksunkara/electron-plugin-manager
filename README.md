@@ -17,13 +17,23 @@ Let's assume our app name is `Dotsync`
 Assuming we are storing the config data for our electron app in the %APPDATA%:
 
 ```js
+// In main process
+import { app } from 'electron';
+
+const dir = path.join(app.getPath('appData'), 'Dotsync');
+```
+
+```js
+// In renderer process
 import { remote } from 'electron';
 
-const dir = path.join(electron.remote.app.getPath('appData'), 'Dotsync');
+const dir = path.join(remote.app.getPath('appData'), 'Dotsync');
 ```
 
 #### Install
 We can install a package from NPM as plugin by:
+
+> NOTE: This is currently available only in main process. Please use ipcRenderer and ipcMain if needed in renderer process
 
 ```js
 epm.install(dir, '@dotsync/plugin-link', 'latest', (err, pluginPath) => {
