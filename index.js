@@ -4,6 +4,7 @@ const uninstall = require('./lib/uninstall');
 const path = require('./lib/path');
 const load = require('./lib/load');
 const unload = require('./lib/unload');
+const manager = require('./lib/manager');
 
 module.exports = {
   list,
@@ -12,4 +13,5 @@ module.exports = {
   path,
   load,
   unload,
+  manager,
 };

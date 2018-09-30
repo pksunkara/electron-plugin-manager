@@ -18,14 +18,17 @@ Assuming we are storing the config data for our electron app in the %APPDATA%:
 
 ```js
 // In main process
-import { app } from 'electron';
+import { app, ipcMain } from 'electron';
+import { manager } from 'electron-plugin-manager';
 
 const dir = path.join(app.getPath('appData'), 'Dotsync');
+
+manager(ipcMain);
 ```
 
 ```js
 // In renderer process
-import { remote } from 'electron';
+import { remote, ipcRenderer } from 'electron';
 
 const dir = path.join(remote.app.getPath('appData'), 'Dotsync');
 ```
@@ -33,12 +36,17 @@ const dir = path.join(remote.app.getPath('appData'), 'Dotsync');
 #### Install
 We can install a package from NPM as plugin by:
 
-> NOTE: This is currently available only in main process. Please use ipcRenderer and ipcMain if needed in renderer process
-
 ```js
+// In main process
 epm.install(dir, '@dotsync/plugin-link', 'latest', (err, pluginPath) => {
   // ...
 });
+```
+
+```js
+// In renderer process
+ipcRenderer.send('epm-install', dir, '@dotsync/plugin-link', 'latest');
+// Response sent to `epm-install-${name}` channel where `name` is the plugin name
 ```
 
 #### Uninstall
@@ -61,14 +69,26 @@ epm.list(dir); // Array of names
 We can load a plugin by:
 
 ```js
+// In main process
 epm.load(dir, '@dotsync/plugin-link'); // Loaded plugin
+```
+
+```js
+// In renderer process
+ipcRenderer.sendSync('epm-load', dir, '@dotsync/plugin-link'); // Loaded plugin
 ```
 
 #### Unload
 We can unload a plugin by:
 
 ```js
+// In main process
 epm.unload(dir, '@dotsync/plugin-link');
+```
+
+```js
+// In renderer process
+ipcRenderer.sendSync('epm-unload', dir, '@dotsync/plugin-link');
 ```
 
 ## License
