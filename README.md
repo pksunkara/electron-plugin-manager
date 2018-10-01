@@ -75,7 +75,7 @@ epm.load(dir, '@dotsync/plugin-link'); // Loaded plugin
 
 ```js
 // In renderer process
-ipcRenderer.sendSync('epm-load', dir, '@dotsync/plugin-link'); // Loaded plugin
+epm.load(dir, '@dotsync/plugin-link', remote.require); // Loaded plugin
 ```
 
 #### Unload
@@ -88,7 +88,7 @@ epm.unload(dir, '@dotsync/plugin-link');
 
 ```js
 // In renderer process
-ipcRenderer.sendSync('epm-unload', dir, '@dotsync/plugin-link');
+epm.unload(dir, '@dotsync/plugin-link', remote.require);
 ```
 
 ## License
