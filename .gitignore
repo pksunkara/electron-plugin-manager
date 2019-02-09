@@ -59,3 +59,4 @@ typings/
 
 test/fixtures/install
 test/fixtures/uninstall
+package-lock.json

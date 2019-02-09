@@ -2,7 +2,7 @@
   "name": "electron-plugin-manager",
   "version": "0.3.2",
   "description": "Plugin Manager based on NPM for Electron apps",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pksunkara/electron-plugin-manager.git"
