@@ -2,10 +2,8 @@ const { assert } = require('chai');
 const path = require('path');
 const list = require('../lib/list');
 
-const cwd = path.resolve(__dirname);
-
 describe('Listing plugins', () => {
-  const installed = list(path.join(cwd, 'fixtures', 'list'));
+  const installed = list(path.join(__dirname, 'fixtures', 'list'));
 
   it('should work', () => {
     assert.lengthOf(installed, 4);
@@ -30,6 +28,6 @@ describe('Listing plugins', () => {
   });
 
   it('in a non existent directory should return empty', () => {
-    assert.lengthOf(list(path.join(cwd, 'fixtures', 'install')), 0);
+    assert.lengthOf(list(path.join(__dirname, 'fixtures', 'install')), 0);
   });
 });

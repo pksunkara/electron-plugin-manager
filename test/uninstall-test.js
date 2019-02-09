@@ -5,10 +5,8 @@ const mkdirp = require('mkdirp');
 const rimraf = require('rimraf');
 const uninstall = require('../lib/uninstall');
 
-const cwd = path.resolve(__dirname);
-
 describe('Uninstalling plugin', () => {
-  const dir = path.join(cwd, 'fixtures', 'uninstall');
+  const dir = path.join(__dirname, 'fixtures', 'uninstall');
 
   before((done) => {
     rimraf(dir, done);

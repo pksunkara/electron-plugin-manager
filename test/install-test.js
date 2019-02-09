@@ -8,12 +8,11 @@ const install = require('../lib/install');
 const load = require('../lib/load');
 const unload = require('../lib/unload');
 
-const cwd = path.resolve(__dirname);
 const octet = { 'Content-Type': 'application/octet-stream' };
 
 describe('Installing plugin', () => {
-  const dir = path.join(cwd, 'fixtures', 'install');
-  const pkg = path.join(cwd, 'fixtures', 'packages');
+  const dir = path.join(__dirname, 'fixtures', 'install');
+  const pkg = path.join(__dirname, 'fixtures', 'packages');
 
   describe('normal', () => {
     const pluginDir = path.join(dir, 'plugins', 'epmsample');

@@ -59,4 +59,5 @@ typings/
 
 test/fixtures/install
 test/fixtures/uninstall
+test/integration/epm
 package-lock.json
