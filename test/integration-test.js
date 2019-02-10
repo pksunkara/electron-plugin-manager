@@ -30,7 +30,11 @@ describe('Integrating into Electron', () => {
 
   it('opens a window', () => {
     return this.app.client.waitUntilWindowLoaded().getWindowCount().then((count) => {
-      assert.equal(count, 2);
+      if (process.platform === 'darwin') {
+        assert.equal(count, 2);
+      } else {
+        assert.equal(count, 1);
+      }
     });
   });
 
@@ -45,7 +49,7 @@ describe('Integrating into Electron', () => {
       .element('#btn-install').click().pause(1000)
       .element('#value').getText().then((value) => {
         assert.isTrue(fs.existsSync(pkg));
-        assert.equal(value, `"${pkg}"`);
+        assert.equal(value, `${JSON.stringify(pkg)}`);
       });
   });
 

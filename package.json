@@ -18,7 +18,7 @@
     "url": "https://github.com/pksunkara/electron-plugin-manager/issues"
   },
   "scripts": {
-    "test": "mocha --timeout 10000",
+    "test": "mocha --timeout 5000",
     "cover": "nyc --reporter=lcovonly --reporter=text-summary npm test",
     "lint": "eslint ."
   },
