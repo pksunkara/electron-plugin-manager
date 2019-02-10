@@ -105,7 +105,7 @@ epm.unload(dir, 'is-number');
 
 ```js
 // In renderer process
-epm.unload(dir, 'is-number', remote.require);
+ipcRenderer.send('epm-unload', dir, 'is-number');
 ```
 
 ## License

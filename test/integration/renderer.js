@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-const { ipcRenderer } = require('electron');
+const { remote, ipcRenderer } = require('electron');
 const path = require('path');
 const epm = require('../../lib');
 
@@ -27,11 +27,14 @@ const list = () => {
 };
 
 const load = () => {
+  const isNumber = epm.load(dir, 'is-number', remote.require);
 
+  setValue(isNumber(5));
 };
 
 const unload = () => {
-
+  ipcRenderer.send('epm-unload', dir, 'is-number');
+  setValue(false);
 };
 
 const uninstall = () => {

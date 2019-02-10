@@ -57,21 +57,21 @@ describe('Integrating into Electron', () => {
       });
   });
 
-  // it('can load a package', () => {
-  //   return this.app.client.waitUntilWindowLoaded()
-  //     .element('#btn-load').click().pause(1000)
-  //     .element('#value').getText().then((value) => {
-  //       assert.equal(value, '["is-number"]');
-  //     });
-  // });
-  //
-  // it('can unload a package', () => {
-  //   return this.app.client.waitUntilWindowLoaded()
-  //     .element('#btn-unload').click().pause(1000)
-  //     .element('#value').getText().then((value) => {
-  //       assert.equal(value, '["is-number"]');
-  //     });
-  // });
+  it('can load a package', () => {
+    return this.app.client.waitUntilWindowLoaded()
+      .element('#btn-load').click().pause(1000)
+      .element('#value').getText().then((value) => {
+        assert.equal(value, 'true');
+      });
+  });
+
+  it('can unload a package', () => {
+    return this.app.client.waitUntilWindowLoaded()
+      .element('#btn-unload').click().pause(1000)
+      .element('#value').getText().then((value) => {
+        assert.equal(value, 'false');
+      });
+  });
 
   it('can uninstall a packages', () => {
     return this.app.client.waitUntilWindowLoaded()
