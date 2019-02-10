@@ -3,8 +3,6 @@ const { format } = require('url');
 const path = require('path');
 const epm = require('../../lib');
 
-const dir = path.join(__dirname, 'epm');
-
 epm.manager(ipcMain);
 
 function createWindow() {

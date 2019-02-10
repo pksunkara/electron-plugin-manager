@@ -1,9 +1,18 @@
+/* eslint-disable newline-per-chained-call, arrow-body-style, consistent-return */
 const { assert } = require('chai');
 const electron = require('electron');
 const { Application } = require('spectron');
 const path = require('path');
+const fs = require('fs');
+const rimraf = require('rimraf');
+
+const pkg = path.join(__dirname, 'integration', 'epm', 'plugins', 'is-number');
 
 describe('Integrating into Electron', () => {
+  before((done) => {
+    rimraf(path.join(__dirname, 'integration', 'epm'), done);
+  });
+
   beforeEach(() => {
     this.app = new Application({
       path: electron,
@@ -17,19 +26,59 @@ describe('Integrating into Electron', () => {
     if (this.app && this.app.isRunning()) {
       return this.app.stop();
     }
-
-    return true;
   });
 
   it('opens a window', () => {
-    this.app.client.waitUntilWindowLoaded().getWindowCount().then((count) => {
-      assert.equal(count, 1);
+    return this.app.client.waitUntilWindowLoaded().getWindowCount().then((count) => {
+      assert.equal(count, 2);
     });
   });
 
   it('has the html loaded', () => {
-    this.app.client.waitUntilWindowLoaded().getTitle().then((title) => {
+    return this.app.client.waitUntilWindowLoaded().getTitle().then((title) => {
       assert.equal(title, 'Electron Plugin Manager Integration Test');
     });
+  });
+
+  it('can install a package', () => {
+    return this.app.client.waitUntilWindowLoaded()
+      .element('#btn-install').click().pause(1000)
+      .element('#value').getText().then((value) => {
+        assert.equal(value, `"${pkg}"`);
+        assert.isTrue(fs.existsSync(pkg));
+      });
+  });
+
+  it('can list packages', () => {
+    return this.app.client.waitUntilWindowLoaded()
+      .element('#btn-list').click().pause(1000)
+      .element('#value').getText().then((value) => {
+        assert.equal(value, '["is-number"]');
+      });
+  });
+
+  // it('can load a package', () => {
+  //   return this.app.client.waitUntilWindowLoaded()
+  //     .element('#btn-load').click().pause(1000)
+  //     .element('#value').getText().then((value) => {
+  //       assert.equal(value, '["is-number"]');
+  //     });
+  // });
+  //
+  // it('can unload a package', () => {
+  //   return this.app.client.waitUntilWindowLoaded()
+  //     .element('#btn-unload').click().pause(1000)
+  //     .element('#value').getText().then((value) => {
+  //       assert.equal(value, '["is-number"]');
+  //     });
+  // });
+
+  it('can uninstall a packages', () => {
+    return this.app.client.waitUntilWindowLoaded()
+      .element('#btn-uninstall').click().pause(1000)
+      .element('#value').getText().then((value) => {
+        assert.equal(value, 'null');
+        assert.isFalse(fs.existsSync(pkg));
+      });
   });
 });

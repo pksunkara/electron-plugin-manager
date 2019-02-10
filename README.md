@@ -39,14 +39,18 @@ We can install a package from NPM as plugin by:
 
 ```js
 // In main process
-epm.install(dir, '@dotsync/plugin-link', 'latest', (err, pluginPath) => {
+epm.install(dir, 'is-number', 'latest', (err, pluginPath) => {
   // ...
 });
 ```
 
 ```js
 // In renderer process
-ipcRenderer.send('epm-install', dir, '@dotsync/plugin-link', 'latest');
+ipcRenderer.on('epm-install-is-number', (event, err, pluginPath) => {
+  // ...
+});
+
+ipcRenderer.send('epm-install', dir, 'is-number', 'latest');
 // Response sent to `epm-install-${name}` channel where `name` is the plugin name
 ```
 
@@ -54,7 +58,8 @@ ipcRenderer.send('epm-install', dir, '@dotsync/plugin-link', 'latest');
 We can uninstall an installed plugin by:
 
 ```js
-epm.uninstall(dir, '@dotsync/plugin-link', 'latest', (err) => {
+// In both process
+epm.uninstall(dir, 'is-number', (err) => {
   // ...
 });
 ```
@@ -63,6 +68,7 @@ epm.uninstall(dir, '@dotsync/plugin-link', 'latest', (err) => {
 We can list all the installed plugins by:
 
 ```js
+// In both process
 epm.list(dir); // Array of names
 ```
 
@@ -71,12 +77,12 @@ We can load a plugin by:
 
 ```js
 // In main process
-epm.load(dir, '@dotsync/plugin-link'); // Loaded plugin
+epm.load(dir, 'is-number'); // Loaded plugin
 ```
 
 ```js
 // In renderer process
-epm.load(dir, '@dotsync/plugin-link', remote.require); // Loaded plugin
+epm.load(dir, 'is-number', remote.require); // Loaded plugin
 ```
 
 #### Unload
@@ -84,12 +90,12 @@ We can unload a plugin by:
 
 ```js
 // In main process
-epm.unload(dir, '@dotsync/plugin-link');
+epm.unload(dir, 'is-number');
 ```
 
 ```js
 // In renderer process
-epm.unload(dir, '@dotsync/plugin-link', remote.require);
+epm.unload(dir, 'is-number', remote.require);
 ```
 
 ## License
