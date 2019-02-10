@@ -18,8 +18,8 @@ Assuming we are storing the config data for our electron app in the %APPDATA%:
 
 ```js
 // In main process
-import { app, ipcMain } from 'electron';
-import epm from 'electron-plugin-manager';
+const { app, ipcMain } = require('electron');
+const epm = require('electron-plugin-manager');
 
 const dir = path.join(app.getPath('appData'), 'Dotsync');
 
@@ -28,8 +28,8 @@ epm.manager(ipcMain);
 
 ```js
 // In renderer process
-import { remote, ipcRenderer } from 'electron';
-import epm from 'electron-plugin-manager';
+const { remote, ipcRenderer } = require('electron');
+const epm = require('electron-plugin-manager');
 
 const dir = path.join(remote.app.getPath('appData'), 'Dotsync');
 ```

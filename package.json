@@ -1,6 +1,6 @@
 {
   "name": "electron-plugin-manager",
-  "version": "0.3.2",
+  "version": "1.0.0",
   "description": "Plugin Manager based on NPM for Electron apps",
   "main": "./lib/index.js",
   "repository": {
@@ -23,20 +23,20 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "bluebird": "^3.5.2",
-    "pacote": "^9.1.0",
-    "rimraf": "^2.6.2"
+    "bluebird": "^3.5.3",
+    "pacote": "^9.4.1",
+    "rimraf": "^2.6.3"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
+    "chai": "^4.2.0",
     "electron": "^4.0.4",
-    "eslint": "^5.4.0",
+    "eslint": "^5.13.0",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-import": "^2.16.0",
     "mkdirp": "^0.5.1",
     "mocha": "^5.2.0",
-    "nock": "^10.0.0",
-    "nyc": "^13.0.1",
+    "nock": "^10.0.6",
+    "nyc": "^13.2.0",
     "spectron": "^5.0.0"
   }
 }
