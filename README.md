@@ -46,22 +46,32 @@ epm.install(dir, 'is-number', 'latest', (err, pluginPath) => {
 
 ```js
 // In renderer process
-ipcRenderer.on('epm-install-is-number', (event, err, pluginPath) => {
+ipcRenderer.on('epm-installed-is-number', (event, err, pluginPath) => {
   // ...
 });
 
 ipcRenderer.send('epm-install', dir, 'is-number', 'latest');
-// Response sent to `epm-install-${name}` channel where `name` is the plugin name
+// Response sent to `epm-installed-${name}` channel where `name` is the plugin name
 ```
 
 #### Uninstall
 We can uninstall an installed plugin by:
 
 ```js
-// In both process
+// In main process
 epm.uninstall(dir, 'is-number', (err) => {
   // ...
 });
+```
+
+```js
+// In renderer process
+ipcRenderer.on('epm-uninstalled-is-number', (event, err) => {
+  // ...
+});
+
+ipcRenderer.send('epm-uninstalled', dir, 'is-number');
+// Response sent to `epm-uninstalled-${name}` channel where `name` is the plugin name
 ```
 
 #### List

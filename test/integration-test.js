@@ -44,8 +44,8 @@ describe('Integrating into Electron', () => {
     return this.app.client.waitUntilWindowLoaded()
       .element('#btn-install').click().pause(1000)
       .element('#value').getText().then((value) => {
-        assert.equal(value, `"${pkg}"`);
         assert.isTrue(fs.existsSync(pkg));
+        assert.equal(value, `"${pkg}"`);
       });
   });
 
@@ -77,8 +77,8 @@ describe('Integrating into Electron', () => {
     return this.app.client.waitUntilWindowLoaded()
       .element('#btn-uninstall').click().pause(1000)
       .element('#value').getText().then((value) => {
-        assert.equal(value, 'null');
         assert.isFalse(fs.existsSync(pkg));
+        assert.equal(value, 'null');
       });
   });
 });

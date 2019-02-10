@@ -35,11 +35,13 @@ const unload = () => {
 };
 
 const uninstall = () => {
-  epm.uninstall(dir, 'is-number', (err) => {
+  ipcRenderer.on('epm-uninstalled-is-number', (event, err) => {
     if (err) {
       return setValue(err.message);
     }
 
     return setValue(null);
   });
+
+  ipcRenderer.send('epm-uninstall', dir, 'is-number');
 };
