@@ -1,5 +1,10 @@
 # Changelog
 
+## master
+
+### Enhancements
+- Added `version` option to `list`
+
 ## 1.0.0
 
 ### Breaking

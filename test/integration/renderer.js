@@ -19,11 +19,15 @@ const install = () => {
     return setValue(pluginPath);
   });
 
-  ipcRenderer.send('epm-install', dir, 'is-number', 'latest');
+  ipcRenderer.send('epm-install', dir, 'is-number', '7.0.0');
 };
 
 const list = () => {
   setValue(epm.list(dir));
+};
+
+const listWithVersions = () => {
+  setValue(epm.list(dir, { version: true }));
 };
 
 const load = () => {

@@ -61,6 +61,14 @@ describe('Integrating into Electron', () => {
       });
   });
 
+  it('can list packages', () => {
+    return this.app.client.waitUntilWindowLoaded()
+      .element('#btn-list-with-versions').click().pause(1000)
+      .element('#value').getText().then((value) => {
+        assert.equal(value, '["is-number@7.0.0"]');
+      });
+  });
+
   it('can load a package', () => {
     return this.app.client.waitUntilWindowLoaded()
       .element('#btn-load').click().pause(1000)

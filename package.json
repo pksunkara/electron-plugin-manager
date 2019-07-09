@@ -23,16 +23,16 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "bluebird": "^3.5.3",
+    "bluebird": "^3.5.5",
     "pacote": "^9.4.1",
     "rimraf": "^2.6.3"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "electron": "^5.0.0",
-    "eslint": "^5.13.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.16.0",
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.0",
     "mkdirp": "^0.5.1",
     "mocha": "^6.0.0",
     "nock": "^10.0.6",

@@ -79,7 +79,14 @@ We can list all the installed plugins by:
 
 ```js
 // In both process
-epm.list(dir); // Array of names
+epm.list(dir); // Array of name
+```
+
+We can list all the installed plugins along with their versions by:
+
+```js
+// In both process
+epm.list(dir, { version: true }); // Array of name@version
 ```
 
 #### Load
