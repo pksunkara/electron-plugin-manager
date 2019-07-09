@@ -1,6 +1,6 @@
 # Changelog
 
-## master
+## 1.1.0
 
 ### Enhancements
 - Added `version` option to `list`
