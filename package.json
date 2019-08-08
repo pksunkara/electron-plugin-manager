@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "electron": "^5.0.0",
+    "electron": "^6.0.1",
     "eslint": "^6.0.1",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.0",
@@ -37,6 +37,6 @@
     "mocha": "^6.0.0",
     "nock": "^10.0.6",
     "nyc": "^14.0.0",
-    "spectron": "^7.0.0"
+    "spectron": "^8.0.0"
   }
 }
