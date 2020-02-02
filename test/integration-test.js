@@ -30,11 +30,7 @@ describe('Integrating into Electron', () => {
 
   it('opens a window', () => {
     return this.app.client.waitUntilWindowLoaded().getWindowCount().then((count) => {
-      if (process.platform === 'darwin') {
-        assert.equal(count, 2);
-      } else {
-        assert.equal(count, 1);
-      }
+      assert.equal(count, 1);
     });
   });
 
