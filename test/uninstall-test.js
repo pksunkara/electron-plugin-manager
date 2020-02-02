@@ -1,7 +1,6 @@
 const { assert } = require('chai');
 const path = require('path');
 const fs = require('fs');
-const mkdirp = require('mkdirp');
 const rimraf = require('rimraf');
 const uninstall = require('../lib/uninstall');
 
@@ -16,7 +15,7 @@ describe('Uninstalling plugin', () => {
     const pluginPath = path.join(dir, 'plugins', 'normal');
 
     before((done) => {
-      mkdirp(pluginPath, () => {
+      fs.mkdir(pluginPath, { recursive: true }, () => {
         assert.isTrue(fs.existsSync(pluginPath));
         uninstall(dir, 'normal', done);
       });
@@ -31,7 +30,7 @@ describe('Uninstalling plugin', () => {
     const pluginPath = path.join(dir, 'plugins', '@scope', 'normal');
 
     before((done) => {
-      mkdirp(pluginPath, () => {
+      fs.mkdir(pluginPath, { recursive: true }, () => {
         assert.isTrue(fs.existsSync(pluginPath));
         uninstall(dir, '@scope/normal', done);
       });
