@@ -1,0 +1,21 @@
+variables:
+  npmCache: $(Pipeline.Workspace)/.npm
+jobs:
+  - job: test
+    strategy:
+      matrix:
+        windows:
+          vmImage: vs2017-win2016
+        osx:
+          vmImage: macOS-10.14
+    pool:
+      vmImage: $(vmImage)
+    steps:
+      - task: NodeTool@0
+        displayName: Installing Node.js
+        inputs:
+          versionSpec: 10.x
+      - script: npm install
+        displayName: Installing dependencies
+      - script: npm test
+        displayName: Testing
