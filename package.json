@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "bluebird": "^3.5.5",
-    "pacote": "^9.4.1",
+    "pacote": "^11.1.1",
     "rimraf": "^3.0.0"
   },
   "devDependencies": {
