@@ -70,7 +70,7 @@ ipcRenderer.on('epm-uninstalled-is-number', (event, err) => {
   // ...
 });
 
-ipcRenderer.send('epm-uninstalled', dir, 'is-number');
+ipcRenderer.send('epm-uninstall', dir, 'is-number');
 // Response sent to `epm-uninstalled-${name}` channel where `name` is the plugin name
 ```
 
