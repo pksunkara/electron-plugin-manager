@@ -12,7 +12,8 @@ describe('Uninstalling plugin', () => {
   });
 
   describe('without scope', () => {
-    const pluginPath = path.join(dir, 'plugins', 'normal');
+    const pluginsPath = path.join(dir, 'plugins');
+    const pluginPath = path.join(pluginsPath, 'normal');
 
     before((done) => {
       fs.mkdir(pluginPath, { recursive: true }, () => {
@@ -21,13 +22,15 @@ describe('Uninstalling plugin', () => {
       });
     });
 
-    it('should delete the folder', () => {
+    it('should delete the plugin folder only', () => {
       assert.isFalse(fs.existsSync(pluginPath));
+      assert.isTrue(fs.existsSync(pluginsPath));
     });
   });
 
   describe('with scope', () => {
-    const pluginPath = path.join(dir, 'plugins', '@scope', 'normal');
+    const pluginsPath = path.join(dir, 'plugins');
+    const pluginPath = path.join(pluginsPath, '@scope', 'normal');
 
     before((done) => {
       fs.mkdir(pluginPath, { recursive: true }, () => {
@@ -36,8 +39,26 @@ describe('Uninstalling plugin', () => {
       });
     });
 
-    it('should delete the folder', () => {
+    it('should delete the plugin folder only', () => {
       assert.isFalse(fs.existsSync(pluginPath));
+      assert.isTrue(fs.existsSync(pluginsPath));
+    });
+  });
+
+  describe('with bad name', () => {
+    const pluginsPath = path.join(dir, 'plugins');
+    const pluginPath = path.join(pluginsPath, 'normal');
+
+    before((done) => {
+      fs.mkdir(pluginPath, { recursive: true }, () => {
+        assert.isTrue(fs.existsSync(pluginPath));
+        uninstall(dir, 'nirmal', done);
+      });
+    });
+
+    it('should not delete any folders', () => {
+      assert.isTrue(fs.existsSync(pluginPath));
+      assert.isTrue(fs.existsSync(pluginsPath));
     });
   });
 
