@@ -29,102 +29,80 @@ describe('Integrating into Electron', () => {
     }
   });
 
-  it('opens a window', () => {
-    return this.app.client
-      .waitUntilWindowLoaded()
-      .getWindowCount()
-      .then((count) => {
-        assert.equal(count, 1);
-      });
+  it('opens a window', async () => {
+    await this.app.client.waitUntilWindowLoaded();
+    return this.app.client.getWindowCount().then((count) => {
+      assert.equal(count, 1);
+    });
   });
 
-  it('has the html loaded', () => {
-    return this.app.client
-      .waitUntilWindowLoaded()
-      .getTitle()
-      .then((title) => {
-        assert.equal(title, 'Electron Plugin Manager Integration Test');
-      });
+  it('has the html loaded', async () => {
+    await this.app.client.waitUntilWindowLoaded();
+    return this.app.client.getTitle().then((title) => {
+      assert.equal(title, 'Electron Plugin Manager Integration Test');
+    });
   });
 
-  it('can install a package', () => {
-    return this.app.client
-      .waitUntilWindowLoaded()
-      .element('#btn-install')
-      .click()
-      .pause(1000)
-      .element('#value')
-      .getText()
-      .then((value) => {
-        assert.isTrue(fs.existsSync(pkg));
-        assert.equal(value, `${JSON.stringify(pkg)}`);
-      });
+  it('can install a package', async () => {
+    await this.app.client.waitUntilWindowLoaded();
+    await (await this.app.client.$('#btn-install')).click();
+    await this.app.client.pause(1000);
+
+    return (await this.app.client.$('#value')).getText().then((value) => {
+      assert.isTrue(fs.existsSync(pkg));
+      assert.equal(value, `${JSON.stringify(pkg)}`);
+    });
   });
 
-  it('can list packages', () => {
-    return this.app.client
-      .waitUntilWindowLoaded()
-      .element('#btn-list')
-      .click()
-      .pause(1000)
-      .element('#value')
-      .getText()
-      .then((value) => {
-        assert.equal(value, '["is-number"]');
-      });
+  it('can list packages', async () => {
+    await this.app.client.waitUntilWindowLoaded();
+    await (await this.app.client.$('#btn-list')).click();
+    await this.app.client.pause(1000);
+
+    return (await this.app.client.$('#value')).getText().then((value) => {
+      assert.equal(value, '["is-number"]');
+    });
   });
 
-  it('can list packages', () => {
-    return this.app.client
-      .waitUntilWindowLoaded()
-      .element('#btn-list-with-versions')
-      .click()
-      .pause(1000)
-      .element('#value')
-      .getText()
-      .then((value) => {
-        assert.equal(value, '["is-number@7.0.0"]');
-      });
+  it('can list packages', async () => {
+    await this.app.client.waitUntilWindowLoaded();
+    await (await this.app.client.$('#btn-list-with-versions')).click();
+    await this.app.client.pause(1000);
+
+    return (await this.app.client.$('#value')).getText().then((value) => {
+      assert.equal(value, '["is-number@7.0.0"]');
+    });
   });
 
-  it('can load a package', () => {
-    return this.app.client
-      .waitUntilWindowLoaded()
-      .element('#btn-load')
-      .click()
-      .pause(1000)
-      .element('#value')
-      .getText()
-      .then((value) => {
-        assert.equal(value, 'true');
-      });
+  it('can load a package', async () => {
+    await this.app.client.waitUntilWindowLoaded();
+    await (await this.app.client.$('#btn-load')).click();
+    await this.app.client.pause(1000);
+
+    return (await this.app.client.$('#value')).getText().then((value) => {
+      assert.equal(value, 'true');
+    });
   });
 
-  it('can unload a package', () => {
-    return this.app.client
-      .waitUntilWindowLoaded()
-      .element('#btn-unload')
-      .click()
-      .pause(1000)
-      .element('#value')
-      .getText()
-      .then((value) => {
-        assert.equal(value, 'false');
-      });
+  it('can unload a package', async () => {
+    await this.app.client.waitUntilWindowLoaded();
+    await (await this.app.client.$('#btn-unload')).click();
+    await this.app.client.pause(1000);
+
+    return (await this.app.client.$('#value')).getText().then((value) => {
+      assert.equal(value, 'false');
+    });
   });
 
-  it('can uninstall a packages', () => {
-    return this.app.client
-      .waitUntilWindowLoaded()
-      .element('#btn-uninstall')
-      .click()
-      .pause(1000)
-      .element('#value')
-      .getText()
-      .then((value) => {
-        assert.isFalse(fs.existsSync(pkg));
-        assert.isTrue(fs.existsSync(plugins));
-        assert.equal(value, 'null');
-      });
+  it('can uninstall a packages', async () => {
+    await this.app.client.waitUntilWindowLoaded();
+    await (await this.app.client.$('#btn-uninstall')).click();
+    await this.app.client.pause(1000);
+
+    return (await this.app.client.$('#value')).getText().then((value) => {
+      assert.isFalse(fs.existsSync(pkg));
+      assert.isTrue(fs.existsSync(plugins));
+      assert.equal(value, 'null');
+    });
   });
 });

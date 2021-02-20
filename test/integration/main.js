@@ -12,14 +12,17 @@ function createWindow() {
     height: 600,
     webPreferences: {
       nodeIntegration: true,
+      enableRemoteModule: true,
     },
   });
 
   // and load the index.html of the app.
-  win.loadURL(format({
-    pathname: path.join(__dirname, 'index.html'),
-    protocol: 'file',
-  }));
+  win.loadURL(
+    format({
+      pathname: path.join(__dirname, 'index.html'),
+      protocol: 'file',
+    })
+  );
 }
 
 app.on('ready', createWindow);
