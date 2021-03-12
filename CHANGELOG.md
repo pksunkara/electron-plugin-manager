@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.0
+
+- Upgraded deps
+
 ## 1.1.0
 
 ### Enhancements
