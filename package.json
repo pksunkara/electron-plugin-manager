@@ -31,7 +31,7 @@
     "chai": "^4.3.0",
     "electron": "^11.3.0",
     "eslint": "^7.20.0",
-    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.22.1",
     "mocha": "^8.0.1",
     "nock": "^13.0.3",
