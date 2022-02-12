@@ -4,7 +4,9 @@ const list = require('../lib/list');
 
 describe('Listing plugins', () => {
   const installed = list(path.join(__dirname, 'fixtures', 'list'));
-  const versions = list(path.join(__dirname, 'fixtures', 'list'), { version: true });
+  const versions = list(path.join(__dirname, 'fixtures', 'list'), {
+    version: true,
+  });
 
   it('should work', () => {
     assert.lengthOf(installed, 4);

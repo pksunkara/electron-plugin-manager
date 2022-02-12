@@ -19,9 +19,16 @@ describe('Installing plugin', () => {
     const pluginDir = path.join(dir, 'plugins', 'epmsample');
     const server = nock('https://registry.npmjs.org', { allowUnmocked: true })
       .get('/epmsample')
-      .reply(200, JSON.stringify(require('./fixtures/packages/epmsample/index.json')))
+      .reply(
+        200,
+        JSON.stringify(require('./fixtures/packages/epmsample/index.json'))
+      )
       .get('/epmsample/-/epmsample-0.1.0.tgz')
-      .reply(200, fs.readFileSync(path.join(pkg, 'epmsample', '0.1.0.tgz')), octet);
+      .reply(
+        200,
+        fs.readFileSync(path.join(pkg, 'epmsample', '0.1.0.tgz')),
+        octet
+      );
 
     before((done) => {
       rimraf(dir, () => {
@@ -50,7 +57,11 @@ describe('Installing plugin', () => {
     const pluginDir = path.join(dir, 'plugins', 'epmsample');
     const server = nock('https://registry.npmjs.org', { allowUnmocked: true })
       .get('/epmsample/-/epmsample-0.1.1.tgz')
-      .reply(200, fs.readFileSync(path.join(pkg, 'epmsample', '0.1.1.tgz')), octet);
+      .reply(
+        200,
+        fs.readFileSync(path.join(pkg, 'epmsample', '0.1.1.tgz')),
+        octet
+      );
 
     before((done) => {
       rimraf(dir, () => {
@@ -79,11 +90,22 @@ describe('Installing plugin', () => {
     const pluginDir = path.join(dir, 'plugins', 'epmsample');
     const server = nock('https://registry.npmjs.org', { allowUnmocked: true })
       .get('/epmdep1')
-      .reply(200, JSON.stringify(require('./fixtures/packages/epmdep1/index.json')))
+      .reply(
+        200,
+        JSON.stringify(require('./fixtures/packages/epmdep1/index.json'))
+      )
       .get('/epmsample/-/epmsample-0.1.2.tgz')
-      .reply(200, fs.readFileSync(path.join(pkg, 'epmsample', '0.1.2.tgz')), octet)
+      .reply(
+        200,
+        fs.readFileSync(path.join(pkg, 'epmsample', '0.1.2.tgz')),
+        octet
+      )
       .get('/epmdep1/-/epmdep1-0.1.0.tgz')
-      .reply(200, fs.readFileSync(path.join(pkg, 'epmdep1', '0.1.0.tgz')), octet);
+      .reply(
+        200,
+        fs.readFileSync(path.join(pkg, 'epmdep1', '0.1.0.tgz')),
+        octet
+      );
 
     before((done) => {
       rimraf(dir, () => {
@@ -134,13 +156,28 @@ describe('Installing plugin', () => {
     const pluginDir = path.join(dir, 'plugins', 'epmsample');
     const server = nock('https://registry.npmjs.org', { allowUnmocked: true })
       .get('/epmdep2')
-      .reply(200, JSON.stringify(require('./fixtures/packages/epmdep2/index.json')))
+      .reply(
+        200,
+        JSON.stringify(require('./fixtures/packages/epmdep2/index.json'))
+      )
       .get('/epmsample/-/epmsample-0.1.3.tgz')
-      .reply(200, fs.readFileSync(path.join(pkg, 'epmsample', '0.1.3.tgz')), octet)
+      .reply(
+        200,
+        fs.readFileSync(path.join(pkg, 'epmsample', '0.1.3.tgz')),
+        octet
+      )
       .get('/epmdep1/-/epmdep1-0.1.0.tgz')
-      .reply(200, fs.readFileSync(path.join(pkg, 'epmdep1', '0.1.0.tgz')), octet)
+      .reply(
+        200,
+        fs.readFileSync(path.join(pkg, 'epmdep1', '0.1.0.tgz')),
+        octet
+      )
       .get('/epmdep2/-/epmdep2-0.1.0.tgz')
-      .reply(200, fs.readFileSync(path.join(pkg, 'epmdep2', '0.1.0.tgz')), octet);
+      .reply(
+        200,
+        fs.readFileSync(path.join(pkg, 'epmdep2', '0.1.0.tgz')),
+        octet
+      );
 
     before((done) => {
       rimraf(dir, () => {
@@ -195,9 +232,18 @@ describe('Installing plugin', () => {
     const pluginDir = path.join(dir, 'plugins', '@scope', 'epmsample');
     const server = nock('https://registry.npmjs.org', { allowUnmocked: true })
       .get('/@scope%2fepmsample')
-      .reply(200, JSON.stringify(require('./fixtures/packages/@scope/epmsample/index.json')))
+      .reply(
+        200,
+        JSON.stringify(
+          require('./fixtures/packages/@scope/epmsample/index.json')
+        )
+      )
       .get('/@scope/epmsample/-/epmsample-0.1.0.tgz')
-      .reply(200, fs.readFileSync(path.join(pkg, '@scope', 'epmsample', '0.1.0.tgz')), octet);
+      .reply(
+        200,
+        fs.readFileSync(path.join(pkg, '@scope', 'epmsample', '0.1.0.tgz')),
+        octet
+      );
 
     before((done) => {
       rimraf(dir, () => {
@@ -214,7 +260,9 @@ describe('Installing plugin', () => {
     });
 
     it('should work when required', () => {
-      assert.deepEqual(load(dir, '@scope/epmsample'), { name: '@scope/epmsample@0.1.0' });
+      assert.deepEqual(load(dir, '@scope/epmsample'), {
+        name: '@scope/epmsample@0.1.0',
+      });
     });
 
     after(() => {
@@ -226,11 +274,23 @@ describe('Installing plugin', () => {
     const pluginDir = path.join(dir, 'plugins', 'epmsample');
     const server = nock('https://registry.npmjs.org', { allowUnmocked: true })
       .get('/epmsample/-/epmsample-0.1.4.tgz')
-      .reply(200, fs.readFileSync(path.join(pkg, 'epmsample', '0.1.4.tgz')), octet)
+      .reply(
+        200,
+        fs.readFileSync(path.join(pkg, 'epmsample', '0.1.4.tgz')),
+        octet
+      )
       .get('/epmdep1/-/epmdep1-0.1.1.tgz')
-      .reply(200, fs.readFileSync(path.join(pkg, 'epmdep1', '0.1.1.tgz')), octet)
+      .reply(
+        200,
+        fs.readFileSync(path.join(pkg, 'epmdep1', '0.1.1.tgz')),
+        octet
+      )
       .get('/epmdep2/-/epmdep2-0.1.0.tgz')
-      .reply(200, fs.readFileSync(path.join(pkg, 'epmdep2', '0.1.0.tgz')), octet);
+      .reply(
+        200,
+        fs.readFileSync(path.join(pkg, 'epmdep2', '0.1.0.tgz')),
+        octet
+      );
 
     before((done) => {
       rimraf(dir, () => {
@@ -276,8 +336,13 @@ describe('Installing plugin', () => {
         assert.include(deps, 'epmdep1');
       });
 
-      describe('and dependency\'s node_modules folder', () => {
-        const nm2 = path.join(pluginDir, 'node_modules', 'epmdep1', 'node_modules');
+      describe("and dependency's node_modules folder", () => {
+        const nm2 = path.join(
+          pluginDir,
+          'node_modules',
+          'epmdep1',
+          'node_modules'
+        );
 
         it('should exist', () => {
           assert.isTrue(fs.existsSync(nm2));
@@ -301,9 +366,17 @@ describe('Installing plugin', () => {
     const pluginDir = path.join(dir, 'plugins', 'epmsample');
     const server = nock('https://registry.npmjs.org', { allowUnmocked: true })
       .get('/epmsample/-/epmsample-0.1.5.tgz')
-      .reply(200, fs.readFileSync(path.join(pkg, 'epmsample', '0.1.5.tgz')), octet)
+      .reply(
+        200,
+        fs.readFileSync(path.join(pkg, 'epmsample', '0.1.5.tgz')),
+        octet
+      )
       .get('/@scope/epmsample/-/epmsample-0.1.0.tgz')
-      .reply(200, fs.readFileSync(path.join(pkg, '@scope', 'epmsample', '0.1.0.tgz')), octet);
+      .reply(
+        200,
+        fs.readFileSync(path.join(pkg, '@scope', 'epmsample', '0.1.0.tgz')),
+        octet
+      );
 
     before((done) => {
       rimraf(dir, () => {
